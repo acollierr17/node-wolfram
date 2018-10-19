@@ -12,7 +12,10 @@ Client.prototype.query = function(input, cb) {
 
   var uri = 'http://api.wolframalpha.com/v2/query?input=' + encodeURIComponent(input) + '&primary=true&appid=' + this.appKey
 
-  request(uri, function(error, response, body) {
+  request({
+  	url: uri,
+  	time: true
+  }, function(error, response, body) {
     if(!error && response.statusCode == 200) {
       var doc = xml.parseXml(body), root = doc.root()
 
